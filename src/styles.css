@@ -11,7 +11,9 @@ body {
     font-family: 'Roboto', sans-serif;
     height: 100vh;
     width: 100%;
-    padding: 2rem;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 .menu {
@@ -41,6 +43,55 @@ body {
     background: #343434;
 }
 
+/* Modal window */
+.modal {
+
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-window {
+    position: fixed;
+    width: 400px;
+    border-radius: 20px;
+    background: #ffffff;
+    margin: 0 auto;
+    height: 130px;
+}
+
+.modal-header {
+    padding: 5px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-header__title {
+    font-size: 1rem;
+}
+
+.header-body {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    font-size: 0.6rem;
+    height: 60%;
+}
+
 /* Figures-module */
 .triangle {
     width: 0;
@@ -61,4 +112,75 @@ body {
     height: 100px;
     border-radius: 50%;
     position: absolute;
+}
+
+/* Card memory module */
+.board {
+    width: 100%;
+    max-width: 1300px;
+    height: 90vh;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin: 0 auto;
+}
+
+.board__box {
+    width: 310px;
+    height: 130px;
+    background: #336633;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5rem;
+    color: #fff;
+}
+
+.board__box_found {
+    animation: found-boxes 1s ease 1;
+}
+
+.screen {
+    width: 100%;
+    max-width: 400px;
+    margin: 10px auto;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.3rem;
+    color: white;
+}
+
+.stars {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.star {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #fff;
+    margin: 0 3px 0 3px;
+    background: #fff;
+}
+
+.dots {
+    font-size: 1.3rem;
+}
+
+.timer {
+    display: flex;
+}
+
+@keyframes found-boxes {
+    from {
+        width: 300px;
+        height: 130px;
+    }
+    to {
+        width: 320px;
+        height: 140px;
+    }
 }
