@@ -17,3 +17,5 @@ export function cleanBody() {
     document.body.removeChild(document.body.lastChild)
   }
 }
+
+
