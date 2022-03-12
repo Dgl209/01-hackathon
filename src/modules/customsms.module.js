@@ -20,7 +20,7 @@ export class customsmsModule extends Module {
       this.href = document.createElement('a')
       this.href.dataset.href = '#'
       this.href.classList.add('btn')
-      this.href.textContent ='Хорошо'
+      this.href.textContent ='Конечно!'
         
       document.body.append(this.fact)
       document.body.append(this.notifElem)
