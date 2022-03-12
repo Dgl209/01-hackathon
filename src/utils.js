@@ -11,9 +11,16 @@ export function getRandomColor() {
   return color;
 }
 
+export function getContastRandomColor(sourseColor) {
+  const sourseColorNumber = sourseColor.slice(1, sourseColor.length)
+  let contrastColorNumberDec = (Math.pow(256, 3) - 1) - parseInt(sourseColorNumber, 16)
+  let contrastColor = `#${contrastColorNumberDec.toString(16)}`
+  return contrastColor
+}
 
 export function cleanBody() {
   while (document.body.childNodes.length > 2) {
     document.body.removeChild(document.body.lastChild)
   }
 }
+
