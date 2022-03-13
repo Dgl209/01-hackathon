@@ -2,7 +2,7 @@ import {Module} from '../core/module'
 
 export class StopWatch extends Module {
     constructor() {
-        super('stopwatch', 'stopwatch')
+        super('stopwatch', 'Stopwatch')
         this.sekundomersHTML = document.createElement('div')
         this.sekundomersHTML.id = 'sekundomers'
         this.createTimer = document.createElement('div')
@@ -12,7 +12,6 @@ export class StopWatch extends Module {
         this.getMinutes.textContent = '00'
         this.getSecond = document.createElement('span')
         this.getSecond.id = 'second'
-        console.log(this.getSecond)
         this.getSecond.textContent = '00'
         this.timer = 0
         this.timerInterval = null

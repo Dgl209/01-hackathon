@@ -6,7 +6,7 @@ let coordinateY
 
 export class FiguresModule extends Module {
   constructor() {
-    super('figures', 'Create figure');
+    super('figures', 'Create Figure');
     this.figuresArray = []
   }
   trigger() {
