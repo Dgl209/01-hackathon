@@ -7,6 +7,7 @@ const contextMenu = new ContextMenu('#menu')
 const figuresModules = new FiguresModule('figures', 'Create figure')
 const cardMemoryGameModule = new CardMemoryGameModule()
 const menu = document.querySelector('#menu')
+const custom = new customsmsModule('custom-sms', 'Custom Notification')
 
 let coordinateX
 let coordinateY
@@ -21,6 +22,7 @@ document.body.addEventListener('contextmenu', event => {
 })
 
 menu.addEventListener('click', event => {
+    
     if (event.target.dataset.type === 'figures') {
         cleanBody()
         removalListeners()
@@ -29,6 +31,10 @@ menu.addEventListener('click', event => {
         cleanBody()
         removalListeners()
         cardMemoryGameModule.trigger()
+    }
+    else if (event.target.dataset.type === 'custom-sms') {
+        custom.trigger()
+        contextMenu.close()
     }
     contextMenu.close()
 })

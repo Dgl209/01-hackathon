@@ -18,6 +18,13 @@ export function getContastRandomColor(sourseColor) {
   return contrastColor
 }
 
+export function cleanBody() {
+  while (document.body.childNodes.length > 2) {
+    document.body.removeChild(document.body.lastChild)
+  }
+}
+
+
 export function modalWindow(options) {
   const modal = document.createElement('div')
   modal.classList.add('modal')
