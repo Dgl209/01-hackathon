@@ -59,6 +59,6 @@ this.btns.addEventListener('click', event => {
       }, 1500)
       setTimeout(() => {
       this.fact.innerHTML = ''
-      },5000)
+      },7000)
    })
 }}
