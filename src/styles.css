@@ -165,7 +165,7 @@ h1 {
 }
 
 .hidden {
-  display: none !important;
+  display: none;
 }
 
 .start-button {
@@ -187,6 +187,9 @@ h1 {
   cursor: pointer;
 }
 
+.start-button .hidden {
+  display: none;
+}
 .start-button:hover {
   color: #333;
   border-color: #888;
