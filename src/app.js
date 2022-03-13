@@ -4,12 +4,14 @@ import {FiguresModule} from "./modules/figures.module";
 import {CardMemoryGameModule} from "./modules/card-memory-game.module";
 import {BackgroundModule} from "./modules/background.module";
 import {CustomSMSModule} from "./modules/customsms.module";
+import { StopWatch } from './modules/stopwatch.module';
 
 const contextMenu = new ContextMenu('#menu')
 const figuresModules = new FiguresModule()
 const cardMemoryGameModule = new CardMemoryGameModule()
 const customSMSModule = new CustomSMSModule('custom-sms', 'Custom Notification')
 const backgroundModule = new BackgroundModule('background', 'Change background')
+const stopwatchModule = new StopWatch()
 const menu = document.querySelector('#menu')
 
 let coordinateX
@@ -19,6 +21,7 @@ contextMenu.add(figuresModules)
 contextMenu.add(cardMemoryGameModule)
 contextMenu.add(customSMSModule)
 contextMenu.add(backgroundModule)
+contextMenu.add(stopwatchModule)
 
 document.body.addEventListener('contextmenu', event => {
   event.preventDefault()
@@ -45,6 +48,10 @@ menu.addEventListener('click', event => {
         cleanBody()
         removalListeners()
         customSMSModule.trigger()
+    } else if (event.target.dataset.type === 'stopwatch') {
+        cleanBody()
+        removalListeners()
+        stopwatchModule.trigger()
     }
     contextMenu.close()
 })
@@ -66,4 +73,5 @@ function removalListeners() {
     cardMemoryGameModule.removeListener()
     backgroundModule.removeListener()
     customSMSModule.removeListener()
+    stopwatchModule.removeListener()
 }
