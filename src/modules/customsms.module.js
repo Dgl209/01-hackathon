@@ -1,6 +1,6 @@
 import {Module} from "../core/module"
 
-export class customsmsModule extends Module {
+export class CustomSMSModule extends Module {
    constructor() {
       super( 'custom-sms', 'Custom Notification' )
       this.fact = document.createElement('h1')
@@ -21,44 +21,51 @@ export class customsmsModule extends Module {
       this.href.dataset.href = '#'
       this.href.classList.add('btn')
       this.href.textContent ='Конечно!'
-        
-      document.body.append(this.fact)
-      document.body.append(this.notifElem)
+
       this.notifElem.append(this.left_noth_prem)
       this.left_noth_prem.append(this.title)
       this.left_noth_prem.append(this.descr)
       this.left_noth_prem.append(this.btns)
       this.btns.append(this.href)
-}
- 
-trigger() {
-   const notif = {
-      openNotif:() => this.notifElem.classList.add('go'),
-      closeNotif: () => this.notifElem.classList.remove('go')
+
+      this.randomFacts = ['Мужчины, у которых есть коты, считаются более счастливыми в любви.', 'Пчёл и ос можно научить искать взрывчатые вещества и наркотики, как собак.', 'Галапагосские черепахи могут жить до 150 лет и на протяжении целого года обходиться без пищи и воды.', 'В Гамбурге есть детский сад для мужчин.', 'Путешествовать полезно для умственного здоровья, а также это снижает риск сердечного приступа и депрессии.', 'По данным исследования, средний IQ человека вырос примерно на 20% с 1950-х годов.', 'В Канаде озер больше, чем в любой другой стране.', 'Компания Google зарабатывает примерно 700 долларов в секунду.']
+      this.notif = {
+         openNotif:() => this.notifElem.classList.add('go'),
+         closeNotif: () => this.notifElem.classList.remove('go')
+      }
    }
 
-    setTimeout(() => {
-      notif.openNotif()
+   trigger() {
+      document.body.append(this.fact)
+      document.body.append(this.notifElem)
+
       setTimeout(() => {
-         notif.closeNotif()
-      },5000)
-   },1000)
+         this.notif.openNotif()
+         setTimeout(() => {
+            this.notif.closeNotif()
+         },5000)
+      },1000)
 
-const randomFacts = ['Мужчины, у которых есть коты, считаются более счастливыми в любви.', 'Пчёл и ос можно научить искать взрывчатые вещества и наркотики, как собак.', 'Галапагосские черепахи могут жить до 150 лет и на протяжении целого года обходиться без пищи и воды.', 'В Гамбурге есть детский сад для мужчин.', 'Путешествовать полезно для умственного здоровья, а также это снижает риск сердечного приступа и депрессии.', 'По данным исследования, средний IQ человека вырос примерно на 20% с 1950-х годов.', 'В Канаде озер больше, чем в любой другой стране.', 'Компания Google зарабатывает примерно 700 долларов в секунду.']
-   
-this.btns.addEventListener('click', event => {
-   event.preventDefault()
+      this.btns.addEventListener('click', this.showSms)
+   }
 
-   setTimeout(() => {
-      notif.closeNotif()
-   },100)
-      
-   setTimeout(() => {
-      let rand = Math.floor(Math.random() * randomFacts.length)
-      this.fact.innerHTML =`А вот тебе и интересный факт  -  ${randomFacts[rand]}`
+   showSms = event => {
+      event.preventDefault()
+
+      setTimeout(() => {
+         this.notif.closeNotif()
+      },100)
+
+      setTimeout(() => {
+         let rand = Math.floor(Math.random() * this.randomFacts.length)
+         this.fact.innerHTML =`А вот тебе и интересный факт  -  ${this.randomFacts[rand]}`
       }, 1500)
       setTimeout(() => {
-      this.fact.innerHTML = ''
-      },7000)
-   })
-}}
+         this.fact.innerHTML = ''
+      },5000)
+   }
+
+   removeListener() {
+      this.btns.removeEventListener('click', this.showSms)
+   }
+}
