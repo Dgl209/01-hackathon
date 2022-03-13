@@ -114,7 +114,28 @@ body {
     position: absolute;
 }
 
-/* Card memory module */
+/* Background-module */
+.container-counter-background{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.counter-background{
+    display: flex;
+    padding: 10px;
+    text-align: center;
+    font-size: 16pt;
+    font-style: unset;
+    font-weight: 600;
+    transition: color 0.3s ease-in-out 0s;
+    max-width: 300px;
+}
+
+.counter-background:hover{
+    border-bottom: solid #343434;
+
+  /* Card memory module */
 .board {
     width: 100%;
     max-width: 1300px;

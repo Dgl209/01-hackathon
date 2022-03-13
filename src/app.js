@@ -11,14 +11,13 @@ const menu = document.querySelector('#menu')
 let coordinateX
 let coordinateY
 
-contextMenu.add(figuresModules)
 contextMenu.add(cardMemoryGameModule)
 
 document.body.addEventListener('contextmenu', event => {
-    event.preventDefault()
-    contextMenu.open()
-    menu.style.top = `${coordinateY}px`
-    menu.style.left = `${coordinateX}px`
+  event.preventDefault()
+  contextMenu.open()
+  menu.style.top = `${coordinateY}px`
+  menu.style.left = `${coordinateX}px`
 })
 
 menu.addEventListener('click', event => {

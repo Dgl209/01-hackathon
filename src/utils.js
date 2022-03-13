@@ -11,6 +11,13 @@ export function getRandomColor() {
   return color;
 }
 
+export function getContastRandomColor(sourseColor) {
+  const sourseColorNumber = sourseColor.slice(1, sourseColor.length)
+  let contrastColorNumberDec = (Math.pow(256, 3) - 1) - parseInt(sourseColorNumber, 16)
+  let contrastColor = `#${contrastColorNumberDec.toString(16)}`
+  return contrastColor
+}
+
 export function modalWindow(options) {
   const modal = document.createElement('div')
   modal.classList.add('modal')
