@@ -134,7 +134,7 @@ export class CardMemoryGameModule extends Module {
                 <div class="star"></div>
                 <div class="star"></div>
             </div>
-            <div class="timer">
+            <div class="stopwatch">
                 <div class="timer__minutes"></div>
                 <div><h1 class="dots ">:</h1></div>
                 <div class="timer__seconds"></div>

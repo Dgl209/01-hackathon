@@ -2,17 +2,23 @@ import './styles.css'
 import {ContextMenu} from "./menu";
 import {FiguresModule} from "./modules/figures.module";
 import {CardMemoryGameModule} from "./modules/card-memory-game.module";
+import {BackgroundModule} from "./modules/background.module";
+import {CustomSMSModule} from "./modules/customsms.module";
 
 const contextMenu = new ContextMenu('#menu')
-const figuresModules = new FiguresModule('figures', 'Create figure')
+const figuresModules = new FiguresModule()
 const cardMemoryGameModule = new CardMemoryGameModule()
+const customSMSModule = new CustomSMSModule('custom-sms', 'Custom Notification')
+const backgroundModule = new BackgroundModule('background', 'Change background')
 const menu = document.querySelector('#menu')
-const custom = new customsmsModule('custom-sms', 'Custom Notification')
 
 let coordinateX
 let coordinateY
 
+contextMenu.add(figuresModules)
 contextMenu.add(cardMemoryGameModule)
+contextMenu.add(customSMSModule)
+contextMenu.add(backgroundModule)
 
 document.body.addEventListener('contextmenu', event => {
   event.preventDefault()
@@ -22,7 +28,7 @@ document.body.addEventListener('contextmenu', event => {
 })
 
 menu.addEventListener('click', event => {
-    
+    event.preventDefault()
     if (event.target.dataset.type === 'figures') {
         cleanBody()
         removalListeners()
@@ -31,10 +37,14 @@ menu.addEventListener('click', event => {
         cleanBody()
         removalListeners()
         cardMemoryGameModule.trigger()
-    }
-    else if (event.target.dataset.type === 'custom-sms') {
-        custom.trigger()
-        contextMenu.close()
+    } else if (event.target.dataset.type === 'background') {
+        cleanBody()
+        removalListeners()
+        backgroundModule.trigger()
+    } else if (event.target.dataset.type === 'custom-sms') {
+        cleanBody()
+        removalListeners()
+        customSMSModule.trigger()
     }
     contextMenu.close()
 })
@@ -54,4 +64,6 @@ function cleanBody() {
 function removalListeners() {
     figuresModules.removeListener()
     cardMemoryGameModule.removeListener()
+    backgroundModule.removeListener()
+    customSMSModule.removeListener()
 }
