@@ -1,15 +1,17 @@
 import './styles.css'
-import {ContextMenu} from "./menu";
-import {FiguresModule} from "./modules/figures.module";
-import {CardMemoryGameModule} from "./modules/card-memory-game.module";
-import {BackgroundModule} from "./modules/background.module";
-import {CustomSMSModule} from "./modules/customsms.module";
+import {ContextMenu} from "./menu"
+import {FiguresModule} from "./modules/figures.module"
+import {CardMemoryGameModule} from "./modules/card-memory-game.module"
+import {BackgroundModule} from "./modules/background.module"
+import {CustomSMSModule} from "./modules/customsms.module"
+import {HoverBoardModule} from "./modules/hover-board.module"
 
 const contextMenu = new ContextMenu('#menu')
 const figuresModules = new FiguresModule()
 const cardMemoryGameModule = new CardMemoryGameModule()
 const customSMSModule = new CustomSMSModule('custom-sms', 'Custom Notification')
 const backgroundModule = new BackgroundModule('background', 'Change background')
+const hoverBoardModule = new HoverBoardModule()
 const menu = document.querySelector('#menu')
 
 let coordinateX
@@ -19,6 +21,7 @@ contextMenu.add(figuresModules)
 contextMenu.add(cardMemoryGameModule)
 contextMenu.add(customSMSModule)
 contextMenu.add(backgroundModule)
+contextMenu.add(hoverBoardModule)
 
 document.body.addEventListener('contextmenu', event => {
   event.preventDefault()
@@ -45,6 +48,10 @@ menu.addEventListener('click', event => {
         cleanBody()
         removalListeners()
         customSMSModule.trigger()
+    } else if (event.target.dataset.type === 'hover-board') {
+        cleanBody()
+        removalListeners()
+        hoverBoardModule.trigger()
     }
     contextMenu.close()
 })
@@ -66,4 +73,5 @@ function removalListeners() {
     cardMemoryGameModule.removeListener()
     backgroundModule.removeListener()
     customSMSModule.removeListener()
+    hoverBoardModule.removeListener()
 }
