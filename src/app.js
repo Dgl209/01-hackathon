@@ -1,33 +1,36 @@
 import './styles.css'
-import {cleanBody} from "./utils";
 import {ContextMenu} from "./menu";
 import {FiguresModule} from "./modules/figures.module";
-import {customsmsModule} from "./modules/customsms.module"
+import {CardMemoryGameModule} from "./modules/card-memory-game.module";
 
 const contextMenu = new ContextMenu('#menu')
 const figuresModules = new FiguresModule('figures', 'Create figure')
+const cardMemoryGameModule = new CardMemoryGameModule()
 const menu = document.querySelector('#menu')
 const custom = new customsmsModule('custom-sms', 'Custom Notification')
 
 let coordinateX
 let coordinateY
 
-contextMenu.add(figuresModules)
-contextMenu.add(custom)
+contextMenu.add(cardMemoryGameModule)
 
 document.body.addEventListener('contextmenu', event => {
-    event.preventDefault()
-    contextMenu.open()
-    menu.style.top = `${coordinateY}px`
-    menu.style.left = `${coordinateX}px`
+  event.preventDefault()
+  contextMenu.open()
+  menu.style.top = `${coordinateY}px`
+  menu.style.left = `${coordinateX}px`
 })
 
 menu.addEventListener('click', event => {
     
     if (event.target.dataset.type === 'figures') {
         cleanBody()
-        figuresModules.removeListener()
+        removalListeners()
         figuresModules.trigger()
+    } else if (event.target.dataset.type === 'card-memory-game') {
+        cleanBody()
+        removalListeners()
+        cardMemoryGameModule.trigger()
     }
     else if (event.target.dataset.type === 'custom-sms') {
         custom.trigger()
@@ -41,3 +44,14 @@ document.body.addEventListener('mousemove', event => {
     coordinateX = x
     coordinateY = y
 })
+
+function cleanBody() {
+    while (document.body.childNodes.length > 2) {
+        document.body.removeChild(document.body.lastChild)
+    }
+}
+
+function removalListeners() {
+    figuresModules.removeListener()
+    cardMemoryGameModule.removeListener()
+}
