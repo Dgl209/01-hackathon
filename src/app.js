@@ -5,13 +5,17 @@ import {CardMemoryGameModule} from "./modules/card-memory-game.module"
 import {BackgroundModule} from "./modules/background.module"
 import {CustomSMSModule} from "./modules/customsms.module"
 import {HoverBoardModule} from "./modules/hover-board.module"
+import {RandomSoundModule} from "./modules/randomsound.module";
+import {StopWatch} from "./modules/stopwatch.module";
 
 const contextMenu = new ContextMenu('#menu')
 const figuresModules = new FiguresModule()
 const cardMemoryGameModule = new CardMemoryGameModule()
 const customSMSModule = new CustomSMSModule('custom-sms', 'Custom Notification')
-const backgroundModule = new BackgroundModule('background', 'Change background')
+const backgroundModule = new BackgroundModule('background', 'Change Background')
 const hoverBoardModule = new HoverBoardModule()
+const randomSoundModule = new RandomSoundModule('random-sound', 'Random Sound')
+const stopWatch = new StopWatch()
 const menu = document.querySelector('#menu')
 
 let coordinateX
@@ -22,6 +26,8 @@ contextMenu.add(cardMemoryGameModule)
 contextMenu.add(customSMSModule)
 contextMenu.add(backgroundModule)
 contextMenu.add(hoverBoardModule)
+contextMenu.add(randomSoundModule)
+contextMenu.add(stopWatch)
 
 document.body.addEventListener('contextmenu', event => {
   event.preventDefault()
@@ -52,6 +58,14 @@ menu.addEventListener('click', event => {
         cleanBody()
         removalListeners()
         hoverBoardModule.trigger()
+    } else if (event.target.dataset.type === 'random-sound') {
+        cleanBody()
+        removalListeners()
+        randomSoundModule.trigger()
+    } else if (event.target.dataset.type === 'stopwatch') {
+        cleanBody()
+        removalListeners()
+        stopWatch.trigger()
     }
     contextMenu.close()
 })

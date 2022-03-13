@@ -3,7 +3,7 @@ import {random} from "../utils";
 
 export class HoverBoardModule extends Module {
     constructor() {
-        super('hover-board', 'Hover board');
+        super('hover-board', 'Hover Board');
         this.board = document.createElement('div')
         this.board.classList.add('container')
         this.board.id = 'board'

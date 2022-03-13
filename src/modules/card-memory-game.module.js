@@ -7,7 +7,7 @@ Element.prototype.appendAfter = function (element) {
 
 export class CardMemoryGameModule extends Module {
     constructor() {
-        super('card-memory-game', 'Card memory game');
+        super('card-memory-game', 'Card Memory Game');
         this.arrayOfDataAttributes = []
         this.arrayOfBoxes = []
         this.board = document.createElement('div')
