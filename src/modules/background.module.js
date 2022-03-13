@@ -1,6 +1,5 @@
 import {Module} from '../core/module'
 import {getContastRandomColor, getRandomColor, random} from "@/utils";
-import {createFigure} from "@/modules/figures.module";
 
 let coordinateX
 let coordinateY
@@ -28,7 +27,6 @@ function changeBackground() {
   document.body.removeEventListener('click', changeBackground)
 
   const randomNumber = random(2, 9)
-  console.log(randomNumber)
 
   if (randomNumber > 5) {
     changeSomeBackground(randomNumber)
@@ -103,5 +101,18 @@ function finishClear(interval, counter, randomNumber) {
     document.body.style.transition = ``
     setTimeout(() => counter.parentElement.remove(), 2000)
   }, 1000 * randomNumber)
+}
+
+function createFigure(name,classList) {
+  name = document.createElement('div')
+  name.classList.add(`${classList}`, 'figure')
+  if (classList === 'triangle') {
+    name.style.borderBottom = `100px solid ${getRandomColor()}`
+  } else {
+    name.style.background = getRandomColor()
+  }
+  name.style.top = `${coordinateY - 50}px`
+  name.style.left = `${coordinateX - 50}px`
+  document.body.append(name)
 }
 
